@@ -149,13 +149,28 @@ print(f.read())"""
 
 def generate_all_possible_matches(k):
     # Good Luck ! There is no such thing.
-    b = ['0:0']
     c = []
-    while c[-1][-1][0] != str(k + 1):
+    def fact(a):
+        fact = 1
+        for i in range(1, a + 1):
+            fact = fact * i
+        return fact
+    
+    for j in range(fact(k)):
+        b = ['0:0']
+        try:
+            if c[-1][-1][0] == str(k):
+                b = ['0:0', '1:0']
+                if c[-1][-1][-1] != str(k):
+                    pass
+        except IndexError:
+            pass
         for i in range(1, k + 1):
-            b.append(b[0].replace(b[0], str(k - (k - i)), 1) + ':' + '0')
+            if b[-1][0] != k:
+                b.append(b[0].replace(b[0][0], str(k - (k - i)), 1))
         c.append(b)
-    return c
+        
+    return b, c
 
 
 # b.append(a.replace(a[0], str(k - (k - i)), 1))
