@@ -155,20 +155,20 @@ def generate_all_possible_matches(k):
         for i in range(1, a + 1):
             fact = fact * i
         return fact
-    
+    a = '0:0'
+    b = ['0:0']
+    v = 0
     for j in range(fact(k)):
-        b = ['0:0']
-        try:
-            if c[-1][-1][0] == str(k):
-                b = ['0:0', '1:0']
-                if c[-1][-1][-1] != str(k):
-                    pass
-        except IndexError:
-            pass
+        b1 = ['0:0']
+        if b1 != b:
+            v += 1
+        print('lol', b1 , b)
         for i in range(1, k + 1):
-            if b[-1][0] != k:
-                b.append(b[0].replace(b[0][0], str(k - (k - i)), 1))
-        c.append(b)
+            b1.append(str(i) + ':' + str(v))
+            if b1[-1][0] == str(k):
+                b.append(a.replace(a[-1], str(int(a[-1]) + 1), 1)[::-1])
+                b.pop(0)
+        c.append(b1)
         
     return b, c
 
