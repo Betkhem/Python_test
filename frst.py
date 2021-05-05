@@ -49,4 +49,7 @@ def Matrix():
     matrix.insert(IndexMin,Max)
     for i in matrix:
         print(i)
-Matrix()
+
+
+f = open('files_text.txt', 'r')
+print(f.read())
