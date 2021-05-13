@@ -51,5 +51,21 @@ def Matrix():
         print(i)
 
 
-f = open('files_text.txt', 'r')
-print(f.read())
+#question107
+def pluralize(a):
+    b = []
+    for i in a:
+        if a.count(i) > 1:
+            if not i + 's' in b:
+                b.append(i + 's') 
+        elif a.count(i) == 1:
+            if not i in b:
+                b.append(i)
+    return b
+
+
+def clean_string(s):
+    return s
+
+
+print(clean_string('abc####d##c#'))
