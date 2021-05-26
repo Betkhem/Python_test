@@ -64,26 +64,23 @@ def pluralize(a):
     return b
 
 
+def time_to_finish(sent, sent2):
+    return len(sent[len(sent2):].replace(' ', '')) * 0.5
+
+
+def is_there_consecutive(lst, n , times):
+    return True if lst.count(n) == times else False
+
+
 def clean_string(s):
-    a = []
-    for i in s:
-        a.append(i)
-    k = 0
+    s = s[::-1]
     for i in range(len(s)):
-        if s[-i] == '#':
-            k += 1
-            s = s.replace(s[-i - 1], '', 1)
-            s = s.replace(s[-i], '', 1)
-        print(s)
-    return s
+        if s[i] == '#':
+            s = s.replace(s[i + 1], '#', 1)
+        print(s, s[i], i)
+    for i in s:
+        s = s.replace('#', '', 1)
+    return s[::-1]
 
-
-def dolla_dolla_bills(a):
-    a1 = "{:.2f}".format(round(a, 2))
-    a2 = list((a1[:-3])[::-1])
-    for i in range(3, len(a2), 4):
-        a2.insert(i, ',')
-    return ''.join(a2[::-1]) + a1[-3:]
-
-
-print(dolla_dolla_bills(453464645665464564.5254465))
+print(clean_string('abc#d##c'))
+print("{:,'#'}".format('abc#d##c').replace('#', ' '))
